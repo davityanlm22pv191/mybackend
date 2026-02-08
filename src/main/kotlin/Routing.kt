@@ -1,77 +1,11 @@
 package com.example
 
+import com.example.data.CourseDetailed
+import com.example.data.MailsResponse
 import io.ktor.server.application.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
 import kotlinx.serialization.Serializable
-
-@Serializable
-data class MailsResponse(
-    val items: List<NotificationItem>
-) {
-    companion object {
-        fun mock() = MailsResponse(
-            items = listOf(
-                NotificationItem.mock1(),
-                NotificationItem.mock2(),
-                NotificationItem.mock3(),
-                NotificationItem.mock4(),
-                NotificationItem.mock5()
-            )
-        )
-    }
-}
-
-@Serializable
-data class NotificationItem(
-    val id: Int,
-    val title: String,
-    val description: String,
-    val type: String,
-    val isViewed: Boolean
-) {
-    companion object {
-        fun mock1() = NotificationItem(
-            id = 1,
-            title = "Вам подарок",
-            description = "У вас один новый подарок",
-            type = "GIFT",
-            isViewed = false
-        )
-
-        fun mock2() = NotificationItem(
-            id = 2,
-            title = "Вам подарок",
-            description = "У вас один новый подарок",
-            type = "GIFT",
-            isViewed = false
-        )
-
-        fun mock3() = NotificationItem(
-            id = 3,
-            title = "У вас новое уведомление",
-            description = "Новое видео к курсу уже доступно",
-            type = "NOTIFICATION",
-            isViewed = false
-        )
-
-        fun mock4() = NotificationItem(
-            id = 4,
-            title = "Вам ещё подарок",
-            description = "У вас один новый подарок",
-            type = "GIFT",
-            isViewed = true
-        )
-
-        fun mock5() = NotificationItem(
-            id = 5,
-            title = "У вас новое уведомление",
-            description = "Срок задания подходит к концу",
-            type = "NOTIFICATION",
-            isViewed = true
-        )
-    }
-}
 
 @Serializable
 data class CoursesResponse(
@@ -295,6 +229,11 @@ fun Application.configureRouting() {
         }
         get("mails") {
             call.respond(MailsResponse.mock())
+        }
+        get("/courseDetailed/{courseId}") {
+            // Извлекаем параметр courseId из URL
+            val courseId = call.parameters["courseId"]!!
+            call.respond(CourseDetailed.MOCK.copy(id = courseId))
         }
     }
 }
