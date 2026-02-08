@@ -5,6 +5,7 @@ import com.example.data.MailsResponse
 import io.ktor.server.application.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
+import kotlinx.coroutines.delay
 import kotlinx.serialization.Serializable
 
 @Serializable
@@ -212,6 +213,7 @@ fun Application.configureRouting() {
     routing {
         // Пример GET запроса для профиля
         get("/profile/short") {
+            delay(2000)
             call.respond(UserProfileShort.mock())
         }
 
@@ -219,20 +221,25 @@ fun Application.configureRouting() {
             call.respond(Product.mock())
         }
         get("fortuneWheel/lastSpin") {
+            delay(2500)
             call.respond(FortuneWheelLastSpin.mock())
         }
         get("myCourses") {
+            delay(2000)
             call.respond(CoursesResponse.mock())
         }
         get("speciallyForYou") {
+            delay(1000)
             call.respond(CoursesResponse.mock())
         }
         get("mails") {
+            delay(1500)
             call.respond(MailsResponse.mock())
         }
         get("/courseDetailed/{courseId}") {
             // Извлекаем параметр courseId из URL
             val courseId = call.parameters["courseId"]!!
+            delay(3000)
             call.respond(CourseDetailed.MOCK.copy(id = courseId))
         }
     }
