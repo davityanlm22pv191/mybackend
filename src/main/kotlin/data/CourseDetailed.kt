@@ -1,5 +1,8 @@
 package com.example.data
 
+import kotlinx.serialization.Serializable
+
+@Serializable
 data class CourseDetailed(
     val id: String,
     val name: String,
