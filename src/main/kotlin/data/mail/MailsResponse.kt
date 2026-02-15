@@ -1,4 +1,4 @@
-package com.example.data
+package com.example.data.mail
 
 import kotlinx.serialization.Serializable
 

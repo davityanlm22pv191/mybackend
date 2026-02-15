@@ -1,5 +1,7 @@
-package com.example.data
+package com.example.data.course
 
+import com.example.data.Certificate
+import com.example.data.Dashboard
 import kotlinx.serialization.Serializable
 
 @Serializable
@@ -20,8 +22,8 @@ data class CourseDetailed(
                 description = "Подробный курс по современному Android-разработке на Kotlin",
                 rate = 4.8f,
                 currentDayCount = 14,
-                dashboard = Dashboard.MOCK,
-                certificate = Certificate.MOCK
+                dashboard = Dashboard.Companion.MOCK,
+                certificate = Certificate.Companion.MOCK
             )
     }
 }
