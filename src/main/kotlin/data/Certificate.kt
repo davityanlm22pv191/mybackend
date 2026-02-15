@@ -1,6 +1,5 @@
 package com.example.data
 
-import com.example.Progress
 import kotlinx.serialization.Serializable
 
 @Serializable
